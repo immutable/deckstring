@@ -1,9 +1,9 @@
 
 # Gods Unchained Deckstrings
 
-Deckstrings are a convenient format for encoding Gods Unchained decks so that they can be shared between third-party applications and the main game. 
+Deckstrings are a convenient format for encoding Gods Unchained decks so they can be shared between third-party applications and the main game. 
 
-Each deckstring is prefixed with a varint ```version```, encoded according to the google protobuf standard. 
+Deckstrings are base64 strings, prefixed with a protobuf varint ```version```. 
 
 ## Implementations
 
@@ -11,7 +11,7 @@ Each deckstring is prefixed with a varint ```version```, encoded according to th
 
 ## Version 1
 
-All these fields are varints encoded according to the google protobuf standard.
+All these fields are protobuf varints. 
 
 First, ```god```, where ```god``` is the varint encoding of the god's name represented according to the following table:
 
@@ -30,9 +30,7 @@ Then, the cards are grouped together into frequency brackets as follows:
 frequency|length|[protos]
 ```
 
-For instance, a deck with protos: [1, 1, 2, 3] would be represented as two frequency brackets:
-
-```1|2|[2, 3]``` and ```2|1[2]```
+For instance, a deck with protos: [1, 1, 2, 3] would be represented as two frequency brackets: ```1|2|[2, 3]``` and ```2|1[2]```. 
 
 The whole encoding, therefore, is:
 
